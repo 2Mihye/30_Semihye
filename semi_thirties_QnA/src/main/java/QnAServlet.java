@@ -16,8 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/QnAServlet")
 public class QnAServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// JDBC불러오기
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-		String jdbcUserName = "thirties";
+		String jdbcUsername = "thirties";
 		String jdbcPassword = "3030";
 		
 		try {
@@ -28,42 +29,40 @@ public class QnAServlet extends HttpServlet {
 		}
 		
 		try {
-			Connection connection = DriverManager.getConnection(jdbcURL, jdbcUserName, jdbcPassword);
-			/*
-				QNA_NO		NUMBER
-				ACCOUNT_ID	VARCHAR2(60 BYTE)
-				QNA_TITLE	VARCHAR2(60 BYTE)
-				QNA_TEXT	VARCHAR2(3000 BYTE)
-				QNA_TIME	DATE
-			*/
-			int qna_no = Integer.parseInt("qna_no");
-			String account_id = request.getParameter("account_id");
-			String qna_title = request.getParameter("qna_title");
-			String qna_text = request.getParameter("qna_text");
-			String qna_time = request.getParameter("qna_time");
+			Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+
+			int qnaNo = Integer.parseInt(request.getParameter("QNA_NO"));
+			String accountID = request.getParameter("ACCOUNT_ID");
+			String qnaTitle = request.getParameter("QNA_TITLE");
+			String qnaText = request.getParameter("QNA_TEXT");
+			String qnaTime = request.getParameter("QNA_TIME");
 			
-			String sql = "INSERT INTO BOARD_QNA (qna_no, account_id, qna_title, qna_text, qna_time VALUES (?, ?, ?, ?, ?)";
+			// 회원가입 insert
+			String sql = "INSERT INTO BOARD_QNA (QNA_NO, ACCOUNT_ID, QNA_TITLE, QNA_TEXT, QNA_TIME) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, qna_no);
-			preparedStatement.setString(2, account_id);
-			preparedStatement.setString(3, qna_title);
-			preparedStatement.setString(4, qna_text);
-			preparedStatement.setDate(5, Date.valueOf(qna_time));
+			preparedStatement.setInt(1, qnaNo);
+			preparedStatement.setString(2, accountID);
+			preparedStatement.setString(3, qnaTitle);
+			preparedStatement.setString(4, qnaText);
+			preparedStatement.setDate(5, Date.valueOf(qnaTime));
 			
 			preparedStatement.executeUpdate();
+
+			request.getSession().setAttribute("QNA_NO", qnaNo);
+			request.getSession().setAttribute("ACCOUNT_ID", accountID);
+			request.getSession().setAttribute("QNA_TITLE", qnaTitle);
+			request.getSession().setAttribute("QNA_TEXT", qnaText);
+			request.getSession().setAttribute("QNA_TIME", qnaTime);
 			
-			request.getSession().setAttribute("qna_no", qna_no);
-			request.getSession().setAttribute("account_id", account_id);
-			request.getSession().setAttribute("qna_title", qna_title);
-			request.getSession().setAttribute("qna_text", qna_text);
-			request.getSession().setAttribute("qna_time", qna_time);
+			// 성공할 경우 이동할 페이지 설정해주고 다시 전송
+			response.sendRedirect("QnAlist.jsp");
 			
-			response.sendRedirect("");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// 실패할 경우 이동할 페이지 설정
 			response.sendRedirect("");
 			e.printStackTrace();
 		}
 	}
+
 
 }
