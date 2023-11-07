@@ -16,7 +16,11 @@
 				
 				<input type="text" id="qna_text" name="qna_text" placeholder="내용" required><br>
 				
+				<input type="file" id="fileInput" accept="image/*">
+				
 				<input type="submit" value="작성">
+				<button><a href= QnAlist.jsp>취소</a></button>
+			
 			</form>
 		</div>
 		
