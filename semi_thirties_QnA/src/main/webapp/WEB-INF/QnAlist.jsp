@@ -7,6 +7,6 @@
 		<title>가지가지 다 물어보는 QnA</title>
 	</head>
 	<body>
-		
+		<h1>게시물 목록</h1>
 	</body>
 </html>
