@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="EUC-KR">
 		<title>가지가지 다 물어보는 QnA</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
 		<header>
@@ -21,15 +21,24 @@
 		<section>
 			<nav>
 				<ul>
-					<li><strong><a># NEW</a></strong></li><br>
-					<li><strong><a># HOT</a></strong></li><br>
-					<li><strong><a># RUNNING</a></strong></li><br>
-					<li><strong><a># BALLET</a></strong></li><br>
-					<li><strong><a># HIKING</a></strong></li><br>
-					<li><strong><a># OTHERS</a></strong></li><br><br>
-					<li><strong><a>SHOPPING CART</a></strong></li>
+					<p><h2>자주 묻는 질문 TOP10</h2></p><br>
+					<li><strong><a>1. 비밀번호 변경은 어떻게 하나요?</a></strong></li><br>
+					<li><strong><a>2. 비밀번호를 분실했어요.</a></strong></li><br>
+					<li><strong><a>3. 아이디를 분실했어요.</a></strong></li><br>
+					<li><strong><a>4. 탈퇴하고 싶어요.</a></strong></li><br>
+					<li><strong><a>5. 상품을 등록하고 싶어요.</a></strong></li><br>
+					<li><strong><a>6. 상품을 삭제하고 싶어요.</a></strong></li><br><br>
+					<li><strong><a>7. 상품을 수정하고 싶어요.</a></strong></li>
+					<li><strong><a>8. 내 정보를 수정하고 싶어요.</a></strong></li>
+					<li><strong><a>9. 원하는 종류의 상품만 보고싶어요.</a></strong></li>
+					<li><strong><a>10.가입 없이 자유게시판 이용하고 싶어요.</a></strong></li>
 				</ul>
-	        </nav>		
+	        </nav>
+	        <article>
+                <div id="pagination">
+
+                </div>
+            </article>	
 		
 		</section>
         

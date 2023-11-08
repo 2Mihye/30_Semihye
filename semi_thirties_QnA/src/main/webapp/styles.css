@@ -20,6 +20,17 @@ body{
     margin-left: 350px;
     margin-right: 350px;
 }
+nav{
+	float : left;	
+}
+h1 {
+	text-align : center;
+}
+
+section {
+	background-color : aliceblue;
+}
+
 .logo{
     color: purple;
     font-family: 'LOTTERIACHAB';

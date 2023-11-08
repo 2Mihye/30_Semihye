@@ -18,8 +18,8 @@
             <p class="category">카테고리 게시판1 게시판2 게시판3 찜(장바구니) 마이페이지</p> <!-- 나중에 링크로 연결 : <a>태그로 줄바꿈 없이 -->
         </div>
 		
-		<h1>게시글 작성</h1>
 		<section>
+		<h1>게시글 작성</h1>
 			<nav>
 				<ul>
 					<p><h2>자주 묻는 질문 TOP10</h2></p><br>
@@ -28,11 +28,11 @@
 					<li><strong><a>3. 아이디를 분실했어요.</a></strong></li><br>
 					<li><strong><a>4. 탈퇴하고 싶어요.</a></strong></li><br>
 					<li><strong><a>5. 상품을 등록하고 싶어요.</a></strong></li><br>
-					<li><strong><a>6. 상품을 삭제하고 싶어요.</a></strong></li><br><br>
-					<li><strong><a>7. 상품을 수정하고 싶어요.</a></strong></li>
-					<li><strong><a>8. 내 정보를 수정하고 싶어요.</a></strong></li>
-					<li><strong><a>9. 원하는 종류의 상품만 보고싶어요.</a></strong></li>
-					<li><strong><a>10. 회원가입 없이 자유게시판 이용하고 싶어요.</a></strong></li>
+					<li><strong><a>6. 상품을 삭제하고 싶어요.</a></strong></li><br>
+					<li><strong><a>7. 상품을 수정하고 싶어요.</a></strong></li><br>
+					<li><strong><a>8. 내 정보를 수정하고 싶어요.</a></strong></li><br>
+					<li><strong><a>9. 원하는 종류의 상품만 보고싶어요.</a></strong></li><br>
+					<li><strong><a>10.가입 없이 자유게시판 이용하고 싶어요.</a></strong></li>
 				</ul>
 	        </nav>
 		
