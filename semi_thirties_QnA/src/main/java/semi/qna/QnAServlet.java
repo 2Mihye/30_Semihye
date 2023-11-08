@@ -1,4 +1,4 @@
-
+package semi.qna;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -55,7 +55,7 @@ public class QnAServlet extends HttpServlet {
 			request.getSession().setAttribute("QNA_TIME", qnaTime);
 			
 			// 성공할 경우 이동할 페이지 설정해주고 다시 전송
-			response.sendRedirect("QnAlist.jsp");
+			response.sendRedirect("QnAList.jsp");
 			
 		} catch (SQLException e) {
 			// 실패할 경우 이동할 페이지 설정
@@ -63,6 +63,4 @@ public class QnAServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-
 }
