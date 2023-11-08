@@ -59,7 +59,7 @@ public class QnAServlet extends HttpServlet {
 			
 		} catch (SQLException e) {
 			// 실패할 경우 이동할 페이지 설정
-			response.sendRedirect("");
+			response.sendRedirect("QnAList.jsp");
 			e.printStackTrace();
 		}
 	}
