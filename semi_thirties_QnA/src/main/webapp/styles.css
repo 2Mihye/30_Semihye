@@ -28,16 +28,42 @@ section {
 	width : auto;
 }
 
+section::after { /*콜론을 2개 넣어서 이제부터 내가 시작한다는 것을 알림*/
+    content: "";
+    display: table;
+    clear: both;
+}
+
 form {
 	float : left;
 	font-family: 'SUITE-Regular';
-	width : 25%;
+	width : 20%;
 }
 
-#qna_title {
+table {
 	width : 80%;
+	float : right;
 }
 
+#qna_title{
+  	width:200px;
+  	height:100px;
+}
+
+#qna_text{
+	width : 100;	
+}
+
+#fileInput {
+	float : left;
+}
+
+#submitButton {
+	float : right;
+}
+button {
+	float : right;
+}
 
 h1 {
 	text-align : center;
@@ -69,4 +95,36 @@ ul li{
     font-family: 'SUITE-Regular';
     font-size: 20pt;
     margin-left: 115px;
+}
+
+li {
+    position: relative;
+}
+li a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-image: linear-gradient(90deg, #6C44BB, #6DA44C); /*밑줄*/
+    opacity: 0;
+    -webkit-transform: translateY(5px);
+    -moz-transform: translateY(5px);
+    transform: translateY(5px);
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+}  
+li a:hover:before, li a:focus:before {
+    opacity: 0;
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    transform: translateY(-2px);
+}
+li a:hover:after, li a:focus:after {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    transform: translateY(0px);
 }

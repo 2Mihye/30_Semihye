@@ -22,7 +22,7 @@ public class QnADAO {
 		}
 	}
 	
-	public List<QnA> getAllProducts(){
+	public List<QnA> getAllQnAs(){
 		List<QnA> qnAs = new ArrayList<>();
 		try {
 			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
@@ -49,10 +49,33 @@ public class QnADAO {
 		return qnAs;
 	}
 	
-	public QnA getQnaNo(int qnaNo) {
+	public QnA getQnaNo(String accountsID) {
 		QnA qna = null;
 		// select해서 하나만 볼 수 있는 쿼리 작성하고 new Product 이용해서 값 가져오기
-		String selectSql = "SELECT qna_no, qna_title, account_id, qna_time FROM board_qna";
+		String selectSql = "SELECT * FROM board_qna WHERE account_id = ?";
+		try {
+			Connection connection = DriverManager.getConnection(selectSql, selectSql, selectSql);
+			PreparedStatement ps = connection.prepareStatement(selectSql);
+			
+			ps.setString(1, accountsID);
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			if(resultSet.next()) {
+				int qnaNo = resultSet.getInt("qnaNO");
+				String accountID = resultSet.getString("accountID");
+				String qnaTitle = resultSet.getString("qnaTitle");
+				String qnaText = resultSet.getString("qnaText");
+				Date qnaTime = resultSet.getDate("qnaTime");
+				
+				qna = new QnA (qnaNo, accountID, qnaTitle, qnaText, qnaTime);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return qna;
 	}
 }

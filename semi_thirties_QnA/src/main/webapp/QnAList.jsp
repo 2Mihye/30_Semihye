@@ -21,12 +21,12 @@
                 <img src="img/gajidori.png" alt="gajidori" id="gajidori">
             </div>
         </header>
-        <nav>
+		<nav>
             <ul>
-                <li>자유게시판</li>
-                <li>리뷰게시판</li>
-                <li>문의게시판</li>
-                <li>마이페이지</li>
+                <li><a>자유게시판</a></li>
+                <li><a>리뷰게시판</a></li>
+                <li><a>문의게시판</a></li>
+                <li><a>마이페이지</a></li>
             </ul>
         </nav>
 		<section>
@@ -42,7 +42,7 @@
 					<a>7. 상품을 수정하고 싶어요.</a><br><br>
 					<a>8. 내 정보를 수정하고 싶어요.</a><br><br>
 					<a>9. 원하는 종류의 상품만 보고싶어요.</a><br><br>
-					<a>10.가입 없이 자유게시판 이용하고 싶어요.</a></p>
+					<a>10.가입 없이 게시판 이용하고 싶어요.</a></p>
 
 	        </form>
 			<table border="1">

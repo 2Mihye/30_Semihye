@@ -17,12 +17,12 @@
                 <img src="img/gajidori.png" alt="gajidori" id="gajidori">
             </div>
         </header>
-        <nav>
+		<nav>
             <ul>
-                <li>자유게시판</li>
-                <li>리뷰게시판</li>
-                <li>문의게시판</li>
-                <li>마이페이지</li>
+                <li><a>자유게시판</a></li>
+                <li><a>리뷰게시판</a></li>
+                <li><a>문의게시판</a></li>
+                <li><a>마이페이지</a></li>
             </ul>
         </nav>
 		
@@ -35,7 +35,7 @@
 				
 				<input type="file" id="fileInput" accept="image/*">
 				
-				<input type="submit" value="작성">
+				<input type="submit" id="submitButton" value="작성">
 				
 				<button><a href = QnAList.jsp>취소</a></button>
 			
