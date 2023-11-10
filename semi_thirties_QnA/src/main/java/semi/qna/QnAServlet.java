@@ -2,12 +2,11 @@ package semi.qna;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,93 +16,51 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/QnAServlet")
 public class QnAServlet extends HttpServlet {
-	// JDBC∫“∑Øø¿±‚
-	String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	String userName = "thirties";
-	String password = "3030";
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
+		String userName = "thirties";
+		String password = "3030";
 		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
 			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
 
-			int qnaNo = Integer.parseInt(request.getParameter("QNA_NO"));
-			String accountID = request.getParameter("ACCOUNT_ID");
-			String qnaTitle = request.getParameter("QNA_TITLE");
-			String qnaText = request.getParameter("QNA_TEXT");
-			String qnaTime = request.getParameter("QNA_TIME");
+			//int QNA_NO = Integer.parseInt(request.getParameter("QNA_NO"));
+			String ACCOUNT_ID = request.getParameter("ACCOUNT_ID");
+			String QNA_TITLE = request.getParameter("QNA_TITLE");
+			String QNA_TEXT = request.getParameter("QNA_TEXT");
+			String QNA_TIME = request.getParameter("QNA_TIME");
 			
-			// »∏ø¯∞°¿‘ insert
-			String sql = "INSERT INTO BOARD_QNA (QNA_NO, ACCOUNT_ID, QNA_TITLE, QNA_TEXT, QNA_TIME) VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO BOARD_QNA (QNA_NO, ACCOUNT_ID, QNA_TITLE, QNA_TEXT, QNA_TIME) VALUES (board_qna_seq.nextval, ?, ?, ?, ?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, qnaNo);
-			preparedStatement.setString(2, accountID);
-			preparedStatement.setString(3, qnaTitle);
-			preparedStatement.setString(4, qnaText);
-			preparedStatement.setDate(5, Date.valueOf(qnaTime));
+			preparedStatement.setString(1, ACCOUNT_ID);
+			preparedStatement.setString(2, QNA_TITLE);
+			preparedStatement.setString(3, QNA_TEXT);
+			preparedStatement.setTimestamp(4, new Timestamp(new Date().getTime()));
 			
 			preparedStatement.executeUpdate();
-
+			
+			/*
 			request.getSession().setAttribute("QNA_NO", qnaNo);
 			request.getSession().setAttribute("ACCOUNT_ID", accountID);
 			request.getSession().setAttribute("QNA_TITLE", qnaTitle);
 			request.getSession().setAttribute("QNA_TEXT", qnaText);
 			request.getSession().setAttribute("QNA_TIME", qnaTime);
-			
-			// º∫∞¯«“ øÏ ¿Ãµø«“ ∆‰¿Ã¡ˆ º≥¡§«ÿ¡÷∞Ì ¥ŸΩ√ ¿¸º€
+			*/
+			// ÏÑ±Í≥µÌï† Ïö∞ Ïù¥ÎèôÌï† ÌéòÏù¥ÏßÄ ÏÑ§Ï†ïÌï¥Ï£ºÍ≥† Îã§Ïãú Ï†ÑÏÜ°
 			response.sendRedirect("QnAList.jsp");
 			
 		} catch (SQLException e) {
-			// Ω«∆–«“ ∞ÊøÏ ¿Ãµø«“ ∆‰¿Ã¡ˆ º≥¡§
+			// Ïã§Ìå®Ìï† Í≤ΩÏö∞ Ïù¥ÎèôÌï† ÌéòÏù¥ÏßÄ ÏÑ§Ï†ï
 			response.sendRedirect("QnAList.jsp");
 			e.printStackTrace();
 		}
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// µ•¿Ã≈Õ∫£¿ÃΩ∫ ø¨∞·
-		Connection connection = null;
-		try {
-			Class.forName("oracle. jdbc.OracleDriver");// Class.forName("oracle.jdbc.driver.OracleDriver); ¿ßøÕ ∞∞¿Ã Ω««‡µ«≥™ ¿ß¬ ¿Ã ∞≥∆Ìµ» πÆ¿Â¿Ã∂Û ¿≠ πÆ¿Â¿ª æ≤¥¬ ∞‘ ¥ı ¡¡¿Ω.
-			connection = DriverManager.getConnection(jdbcURL, userName, password);
-			// SQL ƒı∏Æ
-			String sql = "SELECT * FROM board_qna";
-			PreparedStatement ps = connection.prepareStatement(sql);
-			ResultSet resultSet =  ps.executeQuery();
-			
-			// ¡¶«∞ ∏Ò∑œ¿ª ¿˙¿Â«“ ¿ÂπŸ±∏¥œ∞∞¿∫ ArrayList ª˝º∫
-			ArrayList<QnA> productList = new ArrayList<>();
-			
-			while(resultSet.next()) {
-				int qnaNo = resultSet.getInt("qna_no");
-				String accountID = resultSet.getString("account_id");
-				String qnaTitle = resultSet.getString("qna_title");
-				String qnaText = resultSet.getString("qna_text");
-				Date qnaTime = resultSet.getDate("qna_time");
-				
-				QnA qna = new QnA(qnaNo, accountID, qnaTitle, qnaText, qnaTime);
-					// productListø° ¡¶«∞µÈ¿ª «œ≥™æø add«ÿº≠ ≥÷æÓ¡‹
-				productList.add(qna);			
-			}
-			
-			// JSP ¡¶«∞∏Ò∑œ ∆‰¿Ã¡ˆ∑Œ ¡¶«∞ ∏Ò∑œ¿ª ¿¸¥ﬁ«œ¿⁄ !
-			request.setAttribute("productList", productList);
-			request.getRequestDispatcher("/productList.jsp").forward(request, response);
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
+
 }

@@ -23,7 +23,7 @@ public class QnADAO {
 	}
 	
 	public List<QnA> getAllQnAs(){
-		List<QnA> qnAs = new ArrayList<>();
+		List<QnA> qnas = new ArrayList<>();
 		try {
 			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
 			String sql = "SELECT * FROM board_qna";
@@ -39,22 +39,24 @@ public class QnADAO {
 				Date qnaTime = resultSet.getDate("qna_time");
 				
 				QnA qna = new QnA(qnaNo, accountID, qnaTitle, qnaText, qnaTime);
-				qnAs.add(qna);
+				qnas.add(qna);
 						
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return qnAs;
+		return qnas;
 	}
 	
-	public QnA getQnaNo(String accountsID) {
+	
+	/*
+	public QnA getQnaAccount(String accountsID) {
 		QnA qna = null;
-		// selectÇØ¼­ ÇÏ³ª¸¸ º¼ ¼ö ÀÖ´Â Äõ¸® ÀÛ¼ºÇÏ°í new Product ÀÌ¿ëÇØ¼­ °ª °¡Á®¿À±â
+		// selectí•´ì„œ í•˜ë‚˜ë§Œ ë³¼ ìˆ˜ ìˆëŠ” ì¿¼ë¦¬ ì‘ì„±í•˜ê³  new Product ì´ìš©í•´ì„œ ê°’ ê°€ì ¸ì˜¤ê¸°
 		String selectSql = "SELECT * FROM board_qna WHERE account_id = ?";
 		try {
-			Connection connection = DriverManager.getConnection(selectSql, selectSql, selectSql);
+			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
 			PreparedStatement ps = connection.prepareStatement(selectSql);
 			
 			ps.setString(1, accountsID);
@@ -77,5 +79,47 @@ public class QnADAO {
 		}
 		
 		return qna;
+	}*/
+
+	public QnA getQnaNo(int qnaNos) {
+		QnA qna = null;
+		String selectSql = "SELECT * FROM board_qna WHERE qna_no = ?";
+	
+		try {
+			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
+			PreparedStatement ps = connection.prepareStatement(selectSql);
+			ps.setInt(1, qnaNos);
+			ResultSet resultSet = ps.executeQuery();
+			
+			if(resultSet.next()) {
+				int qnaNo = resultSet.getInt("qna_NO");
+				String accountID = resultSet.getString("account_ID");
+				String qnaTitle = resultSet.getString("qna_Title");
+				String qnaText = resultSet.getString("qna_Text");
+				Date qnaTime = resultSet.getDate("qna_Time");
+				
+				qna = new QnA (qnaNo, accountID, qnaTitle, qnaText, qnaTime);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return qna;
 	}
+	
+	
+	/*
+	public int update(int qnaNo, String qnaTitle, String qnaText, Date qnaTime) {  // writeì™€ ë¹„ìŠ·í•œ ì„±ê²©ì„ ê°€ì§€ê³  ìˆìŒ.
+	    String SQL = "UPDATE board_qna SET qna_title = ?, qna_text = ? WHERE qna_no = ?";
+	    try {
+	    	Connecion = connection;
+	        PreparedStatement ps = connection.prepareStatement(SQL);
+	        ps.setString(1, qnaTitle); 
+	        ps.setString(2, qnaText); 
+	        ps.setDate(3, qnaTime); 		
+	        return ps.executeUpdate();	
+	    }catch(Exception e) {e.printStackTrace();}
+	    return -1;  // ë°ì´í„° ë² ì´ìŠ¤ ì˜¤ë¥˜ë¥¼ ì•Œë ¤ì¤Œ.
+	}*/
 }

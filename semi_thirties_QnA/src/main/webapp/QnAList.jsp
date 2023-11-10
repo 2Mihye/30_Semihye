@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="semi.qna.QnADAO" %>
@@ -7,15 +7,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="EUC-KR">
-		<title>°¡Áö°¡Áö ´Ù ¹°¾îº¸´Â QnA</title>
+		<meta charset="UTF-8">
+		<title>ê°€ì§€ê°€ì§€ ë‹¤ ë¬¼ì–´ë³´ëŠ” QnA</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
-        <p id="login-join-link">·Î±×ÀÎ È¸¿ø°¡ÀÔ</p>
+        <p id="login-join-link">ë¡œê·¸ì¸ íšŒì›ê°€ìž…</p>
         <header>
             <div id="logo">
-                <p id="gajimarket">°¡Áö¸¶ÄÏ</p>
+                <p id="gajimarket">ê°€ì§€ë§ˆì¼“</p>
             </div>
             <div id="mascot">
                 <img src="img/gajidori.png" alt="gajidori" id="gajidori">
@@ -23,48 +23,47 @@
         </header>
 		<nav>
             <ul>
-                <li><a>ÀÚÀ¯°Ô½ÃÆÇ</a></li>
-                <li><a>¸®ºä°Ô½ÃÆÇ</a></li>
-                <li><a>¹®ÀÇ°Ô½ÃÆÇ</a></li>
-                <li><a>¸¶ÀÌÆäÀÌÁö</a></li>
+                <li><a>ìžìœ ê²Œì‹œíŒ</a></li>
+                <li><a>ë¦¬ë·°ê²Œì‹œíŒ</a></li>
+                <li><a>ë¬¸ì˜ê²Œì‹œíŒ</a></li>
+                <li><a>ë§ˆì´íŽ˜ì´ì§€</a></li>
             </ul>
         </nav>
 		<section>
 			<form>
 	
-					<p><h3><strong>ÀÚÁÖ ¹¯´Â Áú¹® TOP10</strong></h3><br>
-					<a>1. ºñ¹Ð¹øÈ£¸¦ º¯°æÇÏ°í ½Í¾î¿ä.</a><br><br>
-					<a>2. ºñ¹Ð¹øÈ£¸¦ ºÐ½ÇÇß¾î¿ä.</a><br><br>
-					<a>3. ¾ÆÀÌµð¸¦ ºÐ½ÇÇß¾î¿ä.</a><br><br>
-					<a>4. Å»ÅðÇÏ°í ½Í¾î¿ä.</a></li><br><br>
-					<a>5. »óÇ°À» µî·ÏÇÏ°í ½Í¾î¿ä.</a><br><br>
-					<a>6. »óÇ°À» »èÁ¦ÇÏ°í ½Í¾î¿ä.</a><br><br>
-					<a>7. »óÇ°À» ¼öÁ¤ÇÏ°í ½Í¾î¿ä.</a><br><br>
-					<a>8. ³» Á¤º¸¸¦ ¼öÁ¤ÇÏ°í ½Í¾î¿ä.</a><br><br>
-					<a>9. ¿øÇÏ´Â Á¾·ùÀÇ »óÇ°¸¸ º¸°í½Í¾î¿ä.</a><br><br>
-					<a>10.°¡ÀÔ ¾øÀÌ °Ô½ÃÆÇ ÀÌ¿ëÇÏ°í ½Í¾î¿ä.</a></p>
+					<p><h3><strong>ìžì£¼ ë¬»ëŠ” ì§ˆë¬¸ TOP10</strong></h3><br>
+					<a>1. ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ê³  ì‹¶ì–´ìš”.</a><br><br>
+					<a>2. ë¹„ë°€ë²ˆí˜¸ë¥¼ ë¶„ì‹¤í–ˆì–´ìš”.</a><br><br>
+					<a>3. ì•„ì´ë””ë¥¼ ë¶„ì‹¤í–ˆì–´ìš”.</a><br><br>
+					<a>4. íƒˆí‡´í•˜ê³  ì‹¶ì–´ìš”.</a></li><br><br>
+					<a>5. ìƒí’ˆì„ ë“±ë¡í•˜ê³  ì‹¶ì–´ìš”.</a><br><br>
+					<a>6. ìƒí’ˆì„ ì‚­ì œí•˜ê³  ì‹¶ì–´ìš”.</a><br><br>
+					<a>7. ìƒí’ˆì„ ìˆ˜ì •í•˜ê³  ì‹¶ì–´ìš”.</a><br><br>
+					<a>8. ë‚´ ì •ë³´ë¥¼ ìˆ˜ì •í•˜ê³  ì‹¶ì–´ìš”.</a><br><br>
+					<a>9. ì›í•˜ëŠ” ì¢…ë¥˜ì˜ ìƒí’ˆë§Œ ë³´ê³ ì‹¶ì–´ìš”.</a><br><br>
+					<a>10.ê°€ìž… ì—†ì´ ê²Œì‹œíŒ ì´ìš©í•˜ê³  ì‹¶ì–´ìš”.</a></p>
 
 	        </form>
 			<table border="1">
 				<tr>
-					<th>°Ô½Ã±Û ¹øÈ£</th>
-					<th>Á¦ ¸ñ</th>
-					<th>ÀÛ¼ºÀÚ</th>
-					<th>ÀÛ¼º½Ã°£</th>
+					<th>ê²Œì‹œê¸€ ë²ˆí˜¸</th>
+					<th>ì œ ëª©</th>
+					<th>ìž‘ì„±ìž</th>
+					<th>ìž‘ì„±ì‹œê°„</th>
 				</tr>
 				<%
 					QnADAO qnaDAO = new QnADAO();
-					List<QnA> qnas = qnaDAO.getAllProducts();
+					List<QnA> qnas = qnaDAO.getAllQnAs();
 					
 					for(QnA qna : qnas){
 						
 				%>
 				<tr>
-					<td><a href="productDetail.jsp?productID=<%=qna.getQnaNo()%>"> <%= qna.getQnaNo() %> </a></td>
-					<td> <%= qna.getQnaNo() %> </td>
-					<td> <%= qna.getAccountID() %> </td>
-					<td> <%= qna.getQnaTitle() %> </td>
-					<td> <%= qna.getQnaTime() %> </td>
+					<td><a href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getQnaNo() %> </a></td>
+					<td><a href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getQnaTitle() %> </td>
+					<td><a href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getAccountID() %> </td>
+					<td><%= qna.getQnaTime() %> </td>
 				</tr>
 				<%		
 					}

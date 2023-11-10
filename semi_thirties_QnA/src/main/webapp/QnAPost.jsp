@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="EUC-KR">
-		<title>°¡Áö°¡Áö ´Ù ¹°¾îº¸´Â QnA</title>
+		<meta charset="UTF-8">
+		<title>ê°€ì§€ê°€ì§€ ë‹¤ ë¬¼ì–´ë³´ëŠ” QnA</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
-        <p id="login-join-link">·Î±×ÀÎ È¸¿ø°¡ÀÔ</p>
+        <p id="login-join-link">ë¡œê·¸ì¸ íšŒì›ê°€ìž…</p>
         <header>
             <div id="logo">
-                <p id="gajimarket">°¡Áö¸¶ÄÏ</p>
+                <p id="gajimarket">ê°€ì§€ë§ˆì¼“</p>
             </div>
             <div id="mascot">
                 <img src="img/gajidori.png" alt="gajidori" id="gajidori">
@@ -19,28 +19,30 @@
         </header>
 		<nav>
             <ul>
-                <li><a>ÀÚÀ¯°Ô½ÃÆÇ</a></li>
-                <li><a>¸®ºä°Ô½ÃÆÇ</a></li>
-                <li><a>¹®ÀÇ°Ô½ÃÆÇ</a></li>
-                <li><a>¸¶ÀÌÆäÀÌÁö</a></li>
+                <li><a>ìžìœ ê²Œì‹œíŒ</a></li>
+                <li><a>ë¦¬ë·°ê²Œì‹œíŒ</a></li>
+                <li><a>ë¬¸ì˜ê²Œì‹œíŒ</a></li>                
+                <li><a>ë§ˆì´íŽ˜ì´ì§€</a></li>
             </ul>
         </nav>
 		
 		<section>
-			<table action="QnAServlet" method="post">
+			<form action="QnAServlet" method="post"> <!-- form action="QnAServlet" method="post" enctype="multipart/form-data" -->
 				
-				<input type="text" id="qna_title" name="qna_title" placeholder="Á¦¸ñ" required><br>
+				<input type="text" id="ACCOUNT_ID" name="ACCOUNT_ID" placeholder="ì•„ì´ë””" required><br>
 				
-				<input type="text" id="qna_text" name="qna_text" placeholder="³»¿ë" required><br>
+				<input type="text" id="QNA_TITLE" name="QNA_TITLE" placeholder="ì œëª©" required><br>
 				
+				<input type="text" id="QNA_TEXT" name="QNA_TEXT" placeholder="ë‚´ìš©" required><br>
 				<input type="file" id="fileInput" accept="image/*">
+
+				<button type="button" onclick='location.href = "QnAList.jsp"'>ì·¨ì†Œ</button>				
+				<input type="submit" id="submitButton" value="ìž‘ì„±">
 				
-				<input type="submit" id="submitButton" value="ÀÛ¼º">
-				
-				<button><a href = QnAList.jsp>Ãë¼Ò</a></button>
+
 			
 			
-			</table>
+			</form>
 		</section>
 	</body>
 </html>
