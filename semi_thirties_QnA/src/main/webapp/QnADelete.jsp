@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import= "semi.qna.QnADAO" %>
+<%@ page import="semi.qna.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>가지가지 다 물어보는 QnA</title>
+		<title>게시글 삭제</title>
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
@@ -25,24 +27,29 @@
                 <li><a>마이페이지</a></li>
             </ul>
         </nav>
-		
-		<section>
-			<form action="QnAPostServlet" method="post"> <!--form action="QnAPostServlet" method="post" enctype="multipart/form-data"-->
-				
-				<input type="text" id="ACCOUNT_ID" name="ACCOUNT_ID" placeholder="아이디" required><br>
-				
-				<input type="text" id="QNA_TITLE" name="QNA_TITLE" placeholder="제목" required><br>
-				
-				<input type="text" id="QNA_TEXT" name="QNA_TEXT" placeholder="내용" required><br>
-				<input type="file" id="fileInput" accept="image/*">
-
-				<button type="button" onclick='location.href = "QnAList.jsp"'>취소</button>				
-				<input type="submit" id="submitButton" value="작성">
-				
-
-			
-			
-			</form>
-		</section>
+        
+        <%
+		String qnaNoValue = (String)request.getParameter("qnaNo");
+        int qnaNo = Integer.parseInt(qnaNoValue);
+		QnADAO dao = new QnADAO();
+		int result =  dao.delete(qnaNo);
+        if(result>0){
+       	%>
+        	<script type="text/javascript">
+        		alert("글 삭제 성공");
+        		location.href="QnAList.jsp";
+        	</script>
+        <%
+        } else {
+        %>
+        
+        <script type="text/javascript">
+        	alert("글 삭제 실패");
+        	location.href="QnAList.jsp";
+        </script>
+        <%
+        }
+        %>
+        
 	</body>
 </html>

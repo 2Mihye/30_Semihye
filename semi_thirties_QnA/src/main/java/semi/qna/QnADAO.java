@@ -22,6 +22,8 @@ public class QnADAO {
 		}
 	}
 	
+	
+	
 	public List<QnA> getAllQnAs(){
 		List<QnA> qnas = new ArrayList<>();
 		try {
@@ -109,17 +111,42 @@ public class QnADAO {
 	}
 	
 	
-	/*
-	public int update(int qnaNo, String qnaTitle, String qnaText, Date qnaTime) {  // write와 비슷한 성격을 가지고 있음.
-	    String SQL = "UPDATE board_qna SET qna_title = ?, qna_text = ? WHERE qna_no = ?";
-	    try {
-	    	Connecion = connection;
+	
+	public int update(QnA qna) {  // write와 비슷한 성격을 가지고 있음.
+		int result = 0;
+		Connection connection;
+		String SQL = "UPDATE board_qna SET qna_title = ?, qna_text = ? WHERE qna_no = ?";
+		try {
+			connection = DriverManager.getConnection(jdbcURL, userName, password);
 	        PreparedStatement ps = connection.prepareStatement(SQL);
-	        ps.setString(1, qnaTitle); 
-	        ps.setString(2, qnaText); 
-	        ps.setDate(3, qnaTime); 		
-	        return ps.executeUpdate();	
-	    }catch(Exception e) {e.printStackTrace();}
-	    return -1;  // 데이터 베이스 오류를 알려줌.
-	}*/
+	        ps.setString(1, qna.getQnaTitle());
+	        ps.setString(2, qna.getQnaText());
+	        ps.setInt(3, qna.getQnaNo());
+	        result = ps.executeUpdate();	
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    return result;
+	}
+	
+	
+	
+	
+	public int delete(int qnaNo) {
+		int result = 0;
+		try {
+			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
+			
+			String sql = "DELETE FROM board_qna WHERE qna_no = ?";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, qnaNo);
+			
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

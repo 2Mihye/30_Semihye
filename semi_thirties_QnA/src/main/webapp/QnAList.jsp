@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>가지가지 다 물어보는 QnA</title>
-		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
         <p id="login-join-link">로그인 회원가입</p>
@@ -69,7 +69,8 @@
 					}
 				%>
 				
-			</table>	
+			</table><br>
+			<button id="postButton" onclick="location.href='QnAPost.jsp'">글쓰기</button>
 		
 		</section>
         

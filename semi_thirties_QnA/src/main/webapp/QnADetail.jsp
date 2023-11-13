@@ -4,13 +4,13 @@
 <%@ page import="java.util.List" %>
 <%@ page import="semi.qna.QnADAO" %>
 <%@ page import="semi.qna.QnA" %>
-<%@ page import="semi.qna.DeleteServlet" %>
+<%@ page import="semi.qna.QnADeleteServlet" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<link rel="stylesheet" type="text/css" href="styles.css">
+		<title>게시물 상세페이지</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 	<body>
         <p id="login-join-link">로그인 회원가입</p>
@@ -48,7 +48,13 @@
 		<%
 		
 		%>
-		<button id="deleteButton" onclick="">삭제</button>
+		
+		<!-- <a href="QnADelete.jsp?qnaNo=<%=qnaNo%>">삭제</a> -->
+		<form action="QnADelete.jsp?qnaNo=<%=qnaNo%>" method="post">
+			<button type="submit" id="deleteButton" onclick="Location.href='QnADelete.jsp?qnaNo=<%=qnaNo%>'">삭제</button>
+		</form>
+		
+		<button id="updateButton" onclick="location.href='QnAUpdate.jsp?qnaNo=<%=qnaNo%>'">수정</button>
 		
 		
 	</body>

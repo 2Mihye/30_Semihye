@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/QnAServlet")
-public class QnAServlet extends HttpServlet {
+@WebServlet("/QnAPostServlet")
+public class QnAPostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
 		String userName = "thirties";

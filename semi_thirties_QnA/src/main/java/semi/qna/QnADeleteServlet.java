@@ -14,16 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/DeleteServlet")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/QnADeleteServlet")
+public class QnADeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// DELETE FROM BOARD_QNA WHERE ACCOUNT_ID = ?;
-		HttpSession httpSession = request.getSession();
+		// HttpSession httpSession = request.getSession();
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:XE";
 		String jdbcUsername = "thirties";
 		String jdbcPassword = "3030";
 		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		PreparedStatement ps = null;
 		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -33,14 +33,16 @@ public class DeleteServlet extends HttpServlet {
 		
 		try {
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-			String qna_no = request.getParameter("qna_no");
-			String account_id = request.getParameter("account_id");
+
+			int qna_no = Integer.parseInt(request.getParameter("qna_no"));
+			QnADAO dao = new QnADAO();
+			int result =  dao.delete(qna_no);
 			
-			String deleteSql = " DELETE FROM board_qna WHERE qna_no = ?";
+			String deleteSql = "DELETE FROM board_qna WHERE qna_no = ?";
+			ps = connection.prepareStatement(deleteSql);
+			ps.setInt(1, qna_no);
 			
-			preparedStatement.setString(1, qna_no);
-			
-			preparedStatement.executeUpdate();
+			ps.executeUpdate();
 			
 			response.sendRedirect("QnA.jsp");
 			

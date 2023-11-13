@@ -16,6 +16,13 @@ public class QnA {
 		this.qnaText = qnaText;
 		this.qnaTime = qnaTime;
 	}
+	
+	public QnA (int qnaNo, String qnaTitle, String qnaText) {
+		super();
+		this.qnaNo = qnaNo;
+		this.qnaTitle = qnaTitle;
+		this.qnaText = qnaText;
+	}
 
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
