@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.net.URLDecoder" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="semi.qna.QnADAO" %>
-<%@ page import="semi.qna.QnA" %>
+<%@ page import="semi.qna.QnAVO" %>
+<%@ page import="semi.qna.Paging" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -51,19 +54,20 @@
 					<th>제 목</th>
 					<th>작성자</th>
 					<th>작성시간</th>
+					<th>조회수</th>
 				</tr>
 				<%
-					QnADAO qnaDAO = new QnADAO();
-					List<QnA> qnas = qnaDAO.getAllQnAs();
-					
-					for(QnA qna : qnas){
-						
+				QnADAO qnaDAO = new QnADAO();
+							List<QnAVO> qnas = qnaDAO.getAllQnAs();
+							
+							for(QnAVO qna : qnas){
 				%>
 				<tr>
-					<td><a href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getQnaNo() %> </a></td>
+					<td> <%= qna.getQnaNo() %> </td>
 					<td><a href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getQnaTitle() %> </td>
 					<td><a href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getAccountID() %> </td>
 					<td><%= qna.getQnaTime() %> </td>
+					<td><%= qna.getQnaHit()%> </td>
 				</tr>
 				<%		
 					}
@@ -73,6 +77,5 @@
 			<button id="postButton" onclick="location.href='QnAPost.jsp'">글쓰기</button>
 		
 		</section>
-        
 	</body>
 </html>

@@ -3,7 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="semi.qna.QnADAO" %>
-<%@ page import="semi.qna.QnA" %>
+<%@ page import="semi.qna.QnAVO" %>
 <%@ page import="semi.qna.QnADeleteServlet" %>
 <!DOCTYPE html>
 <html>
@@ -31,23 +31,25 @@
             </ul>
         </nav>
         
-		<h1>제품 상세 정보</h1>
+		<h1>게시글 상세 정보</h1>
 		<%
 			//String = id 값을 가지고 오겠다.
-			String qnaNoValue = (String)request.getParameter("qnaNo");
-			int qnaNo = Integer.parseInt(qnaNoValue);
+			String qnaNoValue = request.getParameter("qnaNo");
+			int qnaNo = (qnaNoValue != null && !qnaNoValue.isEmpty())?Integer.parseInt(qnaNoValue):0;
 			// DAO 작업
 			QnADAO qnaDao = new QnADAO();
-			QnA qna = qnaDao.getQnaNo(qnaNo);
+			QnAVO qna = qnaDao.getQnaNo(qnaNo);
 		%>
-		<p>사용자 ID : <%=qna.getAccountID() %><br>
+		<p>
+		<% if (qna != null) { %>
+		사용자 ID : <%=qna.getAccountID() %><br>
 		제목 : <%=qna.getQnaTitle() %><br>
 		내용 : <%=qna.getQnaText() %><br>
 		작성 시간 : <%=qna.getQnaTime() %>
+		<% }else{ %>
+		not post.
+		<% } %>
 		</p>
-		<%
-		
-		%>
 		
 		<!-- <a href="QnADelete.jsp?qnaNo=<%=qnaNo%>">삭제</a> -->
 		<form action="QnADelete.jsp?qnaNo=<%=qnaNo%>" method="post">

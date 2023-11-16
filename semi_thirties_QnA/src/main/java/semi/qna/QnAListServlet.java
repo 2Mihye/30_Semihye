@@ -33,7 +33,7 @@ public class QnAListServlet extends HttpServlet {
 			ResultSet resultSet =  ps.executeQuery();
 			
 			// 제품 목록을 저장할 장바구니같은 ArrayList 생성
-			ArrayList<QnA> qnaList = new ArrayList<>();
+			ArrayList<QnAVO> qnaList = new ArrayList<>();
 			
 			while(resultSet.next()) {
 				int qnaNo = resultSet.getInt("qna_no");
@@ -41,8 +41,9 @@ public class QnAListServlet extends HttpServlet {
 				String qnaTitle = resultSet.getString("qna_title");
 				String qnaText = resultSet.getString("qna_text");
 				Date qnaTime = resultSet.getDate("qna_time");
+				int qnaHit = resultSet.getInt("qna_Hit");
 				
-				QnA qna = new QnA(qnaNo, accountID, qnaTitle, qnaText, qnaTime);
+				QnAVO qna = new QnAVO(qnaNo, accountID, qnaTitle, qnaText, qnaTime, qnaHit);
 					// productList에 제품들을 하나씩 add해서 넣어줌
 				qnaList.add(qna);			
 			}

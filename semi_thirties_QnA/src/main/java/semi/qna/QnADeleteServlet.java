@@ -44,7 +44,7 @@ public class QnADeleteServlet extends HttpServlet {
 			
 			ps.executeUpdate();
 			
-			response.sendRedirect("QnA.jsp");
+			response.sendRedirect("QnAList.jsp");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="semi.qna.*" %>
+<%@ page import="semi.qna.QnADAO" %>
+<%@ page import="semi.qna.QnAVO" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,50 +29,35 @@
         </nav>
         <section>
 			<%
-				//String = id 값을 가지고 오겠다.
-				String qnaNoValue = (String)request.getParameter("qnaNo");
-				int qnaNo = Integer.parseInt(qnaNoValue);
-				// DAO 작업
-				QnADAO qnaDao = new QnADAO();
-				QnA qna = qnaDao.getQnaNo(qnaNo);
-				
+
+					//String = id 값을 가지고 오겠다.
+					String qnaNoValue = (String)request.getParameter("qnaNo");
+					int qnaNo = Integer.parseInt(qnaNoValue);
+					
+					// DAO 작업
+					QnADAO qnaDao = new QnADAO();
+					QnAVO qna = qnaDao.getQnaNo(qnaNo);
+					//action="QnAUpdateAlert.jsp?qnaNo=<%=qna.getQnaNo()"
 			%>
-			<form action="QnAUpdateAlert.jsp" method="post">
-				<input type="hidden" name="qnaNo" value="<%=qna.getQnaNo()%>">
+			<form action="QnAUpdateServlet" method="post">
+				<input type="hidden" name="qnaNo" value="<%=qna.getQnaNo()%>"><br>
 				<table border="1">
 					<tr>
-						<td>AccountID</td>
-						<td><input type="text" name="AccountID" value="<%=qna.getAccountID() %>" disabled></td>
-					</tr>
-					<tr>
 						<td>Title</td>
-						<td><input type="text" name="Title" value="<%=qna.getQnaTitle() %>"></td>
+						<td><input type="text" name="qnaTitle" value="<%=qna.getQnaTitle() %>"></td>
+
 					</tr>
 					<tr>
 						<td>Text</td>
-						<td><textarea rows="20" cols="60" name="Text"><%=qna.getQnaText() %></textarea></td>
+						<td><textarea rows="20" cols="60" name="qnaText"><%=qna.getQnaText() %></textarea></td>
+
 					<tr>
 						<td colspan="2">
 						<input type="file" id="fileInput" accept="image/*"><br>
-						<input type="submit" id="update" value="수정">
-							
+						<input type="submit" id="update" value="수정"></td>
+					</tr>		
 				</table>
 			</form>	
 		</section>
-
-
-
-	
-	<%
-	/*
-	QnADAO dao = new QnADAO();
-	QnA qna = new (int qnaNo, String accountID, String qnaTitle, String qnaText, Date qnaTime);
-	dao.update(qna);
-	PageContext.setAttribute("qna", qna);
-	response.sendRedirect("QnAPost.jsp"); */
-	%>
-	
-	
-
 	</body>
 </html>

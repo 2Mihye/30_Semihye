@@ -13,6 +13,7 @@ public class QnADAO {
 	private static final String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String userName = "thirties";
 	private static final String password = "3030";
+	private static Connection connection;
 	
 	public QnADAO() {
 		try {
@@ -24,14 +25,26 @@ public class QnADAO {
 	
 	
 	
-	public List<QnA> getAllQnAs(){
-		List<QnA> qnas = new ArrayList<>();
+	public List<QnAVO> getAllQnAs(){
+		List<QnAVO> qnas = new ArrayList<>();
 		try {
-			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
-			String sql = "SELECT * FROM board_qna";
+			connection = DriverManager.getConnection(jdbcURL, userName, password);
+			
+			/*String vpage = request.getParameter("vpage");
+			if(vpage == null) {
+				vpage = "1";
+			}
+			
+			int qpage = Integer.parseInt(vpage);
+			
+			int indexNo = (qpage -1) * 10; */
+			
+			
+			String sql = "SELECT * FROM board_qna ORDER BY qna_no DESC "; // LIMIT 시작번호, 출력개수
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			ResultSet resultSet = ps.executeQuery();
+			
 			
 			while(resultSet.next()) {
 				int qnaNo = resultSet.getInt("qna_no");
@@ -39,11 +52,13 @@ public class QnADAO {
 				String qnaTitle = resultSet.getString("qna_title");
 				String qnaText = resultSet.getString("qna_text");
 				Date qnaTime = resultSet.getDate("qna_time");
+				int qnaHit = resultSet.getInt("qna_hit");
 				
-				QnA qna = new QnA(qnaNo, accountID, qnaTitle, qnaText, qnaTime);
+				QnAVO qna = new QnAVO(qnaNo, accountID, qnaTitle, qnaText, qnaTime, qnaHit);
 				qnas.add(qna);
 						
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -83,12 +98,12 @@ public class QnADAO {
 		return qna;
 	}*/
 
-	public QnA getQnaNo(int qnaNos) {
-		QnA qna = null;
+	public QnAVO getQnaNo(int qnaNos) {
+		QnAVO qna = null;
 		String selectSql = "SELECT * FROM board_qna WHERE qna_no = ?";
 	
 		try {
-			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
+			connection = DriverManager.getConnection(jdbcURL, userName, password);
 			PreparedStatement ps = connection.prepareStatement(selectSql);
 			ps.setInt(1, qnaNos);
 			ResultSet resultSet = ps.executeQuery();
@@ -99,8 +114,10 @@ public class QnADAO {
 				String qnaTitle = resultSet.getString("qna_Title");
 				String qnaText = resultSet.getString("qna_Text");
 				Date qnaTime = resultSet.getDate("qna_Time");
-				
-				qna = new QnA (qnaNo, accountID, qnaTitle, qnaText, qnaTime);
+				int qnaHit = resultSet.getInt("qna_Hit");
+				qnaHit++;
+				qnaHitUpdate(qnaHit, qnaNo);
+				qna = new QnAVO (qnaNo, accountID, qnaTitle, qnaText, qnaTime, qnaHit);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -112,22 +129,24 @@ public class QnADAO {
 	
 	
 	
-	public int update(QnA qna) {  // write와 비슷한 성격을 가지고 있음.
-		int result = 0;
-		Connection connection;
+	public int updateQnA(QnAVO qna) { 
+		
 		String SQL = "UPDATE board_qna SET qna_title = ?, qna_text = ? WHERE qna_no = ?";
+		PreparedStatement ps = null;
 		try {
 			connection = DriverManager.getConnection(jdbcURL, userName, password);
-	        PreparedStatement ps = connection.prepareStatement(SQL);
+
+	        ps = connection.prepareStatement(SQL);
 	        ps.setString(1, qna.getQnaTitle());
+	        // ps.setString(1, qna.getQnaTitle());
 	        ps.setString(2, qna.getQnaText());
 	        ps.setInt(3, qna.getQnaNo());
-	        result = ps.executeUpdate();	
+	        return ps.executeUpdate();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	    return result;
+		return -1;
 	}
 	
 	
@@ -148,5 +167,38 @@ public class QnADAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public int total() {
+		int total = 0;
+		try {
+			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
+			
+			String sql = "SELECT count(*) AS total FROM board_qna";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ResultSet result = ps.executeQuery();
+			if(result.next()){
+				total = result.getInt(1); // 데이터가 없으면 null이고 return 0값이 된다.
+				//count = rs.getInt("count(*)"); 위와 동일한 결과
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return total;
+	}
+	
+	public int qnaHitUpdate(int qnaHit, int qnaNo) {
+		try {
+			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
+			String SQL = "UPDATE board_qna SET qna_hit = ? where qna_no = ?";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, qnaHit);//물음표의 순서
+			ps.setInt(2, qnaNo);
+			return ps.executeUpdate();//insert,delete,update			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;//데이터베이스 오류
 	}
 }

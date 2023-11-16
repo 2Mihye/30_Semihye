@@ -2,22 +2,29 @@ package semi.qna;
 
 import java.sql.Date;
 
-public class QnA {
+public class QnAVO {
 	private int qnaNo;
 	private String accountID;
 	private String qnaTitle;
 	private String qnaText;
 	private Date qnaTime;
+	private int qnaHit;
+	private int total;
 	
-	public QnA (int qnaNo, String accountID, String qnaTitle, String qnaText, Date qnaTime) {
+	public QnAVO (int qnaNo, String accountID, String qnaTitle, String qnaText, Date qnaTime, int qnaHit) {
 		this.qnaNo = qnaNo;
 		this.accountID = accountID;
 		this.qnaTitle = qnaTitle;
 		this.qnaText = qnaText;
 		this.qnaTime = qnaTime;
+		this.qnaHit = qnaHit;
 	}
 	
-	public QnA (int qnaNo, String qnaTitle, String qnaText) {
+	public QnAVO() {	
+	}
+	
+	
+	public QnAVO (int qnaNo, String qnaTitle, String qnaText) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
@@ -43,6 +50,14 @@ public class QnA {
 	public void setQnaTime(Date qnaTime) {
 		this.qnaTime = qnaTime;
 	}
+	
+	public void setQnaHit(int qnahit) {
+		this.qnaHit = qnaHit;
+	}
+	
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
 	public int getQnaNo() {
 		return qnaNo;
@@ -64,5 +79,12 @@ public class QnA {
 		return qnaTime;
 	}
 	
+	public int getQnaHit() {
+		return qnaHit;
+	}
+	
+	public int getTotal() {
+		return total;
+	}
 }
 
