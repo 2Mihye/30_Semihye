@@ -6,21 +6,24 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/QnAstyles.css">
+	<link rel="stylesheet" href="css/QnAStyles.css">
 	<title>가지고 싶은 물건, 가지가지 다~ 있다! 가지마켓</title>
 	<script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
+	<%! String account_id; %>
 		<div class="wrap">
 	        <div class="inner">
 		        <div>
-				<%
+				<%	
 			        if (session.getAttribute("USER_NAME") != null) {
 			    %>
 			        
 			    <%-- 세션에서 사용자 이름 가져오기 --%>
-			    <% String user_name = (String)session.getAttribute("USER_NAME"); %>
+			    <% 
+					account_id = (String) session.getAttribute("ACCOUNT_ID");
+			    	String user_name = (String)session.getAttribute("USER_NAME"); %>
 			    
 			    <p class="sessionState"><%= user_name %>님 환영합니다! &nbsp;&nbsp;<a href="logout.jsp">로그아웃</a></p>
 			    <%
@@ -40,10 +43,10 @@
 	                </header>
 	                <nav>
 	                    <ul>
-	                        <li><a>자유게시판</a></li>
-	                        <li><a>리뷰게시판</a></li>
-	                        <li><a href="QnAList.jsp">문의게시판</a></li>
-	                        <li><a href="productRetrieve.jsp">마이페이지</a></li>
+	                        <li><a id="li_link" href="BoardList.jsp" style="text-decoration: none;">자유게시판</a></li>
+	                        <li><a id="li_link" href="reviewList.jsp" style="text-decoration: none;">리뷰게시판</a></li>
+	                        <li><a id="li_link" href="QnAList.jsp" style="text-decoration: none;">문의게시판</a></li>
+	                        <li><a id="li_link" href="productRetrieve.jsp" style="text-decoration: none;">마이페이지</a></li>
 	                    </ul>
 	                </nav>
 		        </div>
@@ -59,27 +62,23 @@
 			%>
 			<form action="QnAUpdateServlet" method="post">
 				<input type="hidden" name="qnaNo" value="<%=qna.getQnaNo()%>"><br>
-				<table border="1">
+				<table border="1" id="detailTable">
 					<tr>
-						<td>Title</td>
-						<td><input type="text" name="qnaTitle" value="<%=qna.getQnaTitle() %>"></td>
-
+						<th style="padding:15px;"> 제목 </th><td><input style="width:100%; border:none;" type="text" name="qnaTitle" size="13pt" value="<%=qna.getQnaTitle() %>"></td>
 					</tr>
-					<tr>
-						<td>Text</td>
-						<td><textarea rows="20" cols="60" name="qnaText"><%=qna.getQnaText() %></textarea></td>
-
+						<th>내용	</th><td><textarea rows="20" cols="60" name="qnaText" style="width:100%; resize :none; border:none;"><%=qna.getQnaText() %></textarea></td>
 					<tr>
 						<td colspan="2">
-						<input type="file" id="fileInput" accept="image/*"><br>
-						<input type="submit" id="update" value="수정"></td>
+						<input style="font-family: 'SUITE-Regular';" type="file" id="fileInput" accept="image/*"><br>
 					</tr>		
 				</table>
+				<button type="submit" id="update">수정</button>
 			</form>	
 		</section>
-			<footer>
-	        </footer>
 	        </div>
 	    </div>
 	</body>
+	<footer>
+			<p>회사소개 | 인재채용 | 제휴제안 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 고객센터 | GAZI Corp.</p>
+	</footer>
 </html>

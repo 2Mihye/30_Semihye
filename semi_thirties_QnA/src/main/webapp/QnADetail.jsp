@@ -9,21 +9,24 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/QnADetailStyles.css">
+	<link rel="stylesheet" href="css/QnAStyles.css">
 	<title>가지고 싶은 물건, 가지가지 다~ 있다! 가지마켓</title>
 	<script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
+	<%! String account_id; %>
 		<div class="wrap">
 	        <div class="inner">
 		        <div>
-				<%
+				<%	
 			        if (session.getAttribute("USER_NAME") != null) {
 			    %>
 			        
 			    <%-- 세션에서 사용자 이름 가져오기 --%>
-			    <% String user_name = (String)session.getAttribute("USER_NAME"); %>
+			    <% 
+					account_id = (String) session.getAttribute("ACCOUNT_ID");
+			    	String user_name = (String)session.getAttribute("USER_NAME"); %>
 			    
 			    <p class="sessionState"><%= user_name %>님 환영합니다! &nbsp;&nbsp;<a href="logout.jsp">로그아웃</a></p>
 			    <%
@@ -43,10 +46,10 @@
 	                </header>
 	                <nav>
 	                    <ul>
-	                        <li><a>자유게시판</a></li>
-	                        <li><a>리뷰게시판</a></li>
-	                        <li><a href="QnAList.jsp">문의게시판</a></li>
-	                        <li><a href="productRetrieve.jsp">마이페이지</a></li>
+	                        <li><a id="li_link" href="BoardList.jsp" style="text-decoration: none;">자유게시판</a></li>
+	                        <li><a id="li_link" href="reviewList.jsp" style="text-decoration: none;">리뷰게시판</a></li>
+	                        <li><a id="li_link" href="QnAList.jsp" style="text-decoration: none;">문의게시판</a></li>
+	                        <li><a id="li_link" href="productRetrieve.jsp" style="text-decoration: none;">마이페이지</a></li>
 	                    </ul>
 	                </nav>
 		        </div>
@@ -58,7 +61,7 @@
 			QnADAO qnaDao = new QnADAO();
 			QnAVO qna = qnaDao.getQnaNo(qnaNo);
 		%>
-		<table border="1" style="width:90%; border-collapse:collapse; vertical-align: middle; margin-top:20px; margin-left:50px; margin-bottom:20px;">
+		<table border="1" id="detailTable">
 		<% if (qna != null) { %>
 			<tr>
 				<th>작성자</th><td style="width: 400px;"><%=qna.getAccountID() %></td>
@@ -68,7 +71,7 @@
 				<th>제목</th><td colspan="3"><%=qna.getQnaTitle() %></td>
 			</tr>
 			<tr>
-				<th style="height:400px;">내용</th><td colspan="3"><%=qna.getQnaText() %></td>
+				<th style="height:500px;">내용</th><td colspan="3"><%=qna.getQnaText() %></td>
 			</tr>
 		</table>
 		<% }else{ %>
@@ -80,10 +83,11 @@
 		</form>
 		
 		<button id="updateButton" onclick="location.href='QnAUpdate.jsp?qnaNo=<%=qnaNo%>'">수정</button>
-
-	        <footer>
-	        </footer>
+		<button onclick="location.href='QnAList.jsp'" style="float:left; margin-left:50px;">목록</button>
 	        </div>
 	    </div>
 	</body>
+	<footer>
+			<p>회사소개 | 인재채용 | 제휴제안 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 고객센터 | GAZI Corp.</p>
+	</footer>
 </html>

@@ -17,8 +17,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/QnADeleteServlet")
 public class QnADeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// DELETE FROM BOARD_QNA WHERE ACCOUNT_ID = ?;
-		// HttpSession httpSession = request.getSession();
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:XE";
 		String jdbcUsername = "thirties";
 		String jdbcPassword = "3030";

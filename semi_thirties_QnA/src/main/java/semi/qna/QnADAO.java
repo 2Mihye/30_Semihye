@@ -29,22 +29,11 @@ public class QnADAO {
 		List<QnAVO> qnas = new ArrayList<>();
 		try {
 			connection = DriverManager.getConnection(jdbcURL, userName, password);
-			
-			/*String vpage = request.getParameter("vpage");
-			if(vpage == null) {
-				vpage = "1";
-			}
-			
-			int qpage = Integer.parseInt(vpage);
-			
-			int indexNo = (qpage -1) * 10; */
-			
-			
-			String sql = "SELECT * FROM board_qna ORDER BY qna_no DESC "; // LIMIT 시작번호, 출력개수
+
+			String sql = "SELECT * FROM board_qna ORDER BY qna_no DESC ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
 			ResultSet resultSet = ps.executeQuery();
-			
 			
 			while(resultSet.next()) {
 				int qnaNo = resultSet.getInt("qna_no");
@@ -55,14 +44,11 @@ public class QnADAO {
 				int qnaHit = resultSet.getInt("qna_hit");
 				
 				QnAVO qna = new QnAVO(qnaNo, accountID, qnaTitle, qnaText, qnaTime, qnaHit);
-				qnas.add(qna);
-						
-			}
-			
+				qnas.add(qna);			
+			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return qnas;
 	}
 	

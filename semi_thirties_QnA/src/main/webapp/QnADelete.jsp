@@ -6,21 +6,24 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/QnAstyles.css">
+	<link rel="stylesheet" href="css/QnAStyles.css">
 	<title>가지고 싶은 물건, 가지가지 다~ 있다! 가지마켓</title>
 	<script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
 	</head>
 
 	<body>
+	<%! String account_id; %>
 		<div class="wrap">
 	        <div class="inner">
 		        <div>
-				<%
+				<%	
 			        if (session.getAttribute("USER_NAME") != null) {
 			    %>
 			        
 			    <%-- 세션에서 사용자 이름 가져오기 --%>
-			    <% String user_name = (String)session.getAttribute("USER_NAME"); %>
+			    <% 
+					account_id = (String) session.getAttribute("ACCOUNT_ID");
+			    	String user_name = (String)session.getAttribute("USER_NAME"); %>
 			    
 			    <p class="sessionState"><%= user_name %>님 환영합니다! &nbsp;&nbsp;<a href="logout.jsp">로그아웃</a></p>
 			    <%
@@ -40,10 +43,10 @@
 	                </header>
 	                <nav>
 	                    <ul>
-	                        <li><a>자유게시판</a></li>
-	                        <li><a>리뷰게시판</a></li>
-	                        <li><a href="QnAList.jsp">문의게시판</a></li>
-	                        <li><a href="productRetrieve.jsp">마이페이지</a></li>
+	                        <li><a id="li_link" href="BoardList.jsp" style="text-decoration: none;">자유게시판</a></li>
+	                        <li><a id="li_link" href="reviewList.jsp" style="text-decoration: none;">리뷰게시판</a></li>
+	                        <li><a id="li_link" href="QnAList.jsp" style="text-decoration: none;">문의게시판</a></li>
+	                        <li><a id="li_link" href="productRetrieve.jsp" style="text-decoration: none;">마이페이지</a></li>
 	                    </ul>
 	                </nav>
 		        </div>
@@ -69,10 +72,10 @@
         <%
         }
         %>
-        
-	        <footer>
-	        </footer>
 	        </div>
 	    </div>
 	</body>
+	<footer>
+			<p>회사소개 | 인재채용 | 제휴제안 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 고객센터 | GAZI Corp.</p>
+	</footer>
 </html>
