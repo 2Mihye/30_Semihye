@@ -1,0 +1,102 @@
+OS 볼륨에 대한 폴더 경로의 목록입니다.
+볼륨 일련 번호는 0A83-1DEC입니다.
+C:.
+│  .gitignore
+│  Mihye SQL.txt
+│  outtree.txt
+│  treeMainOutPut.txt
+│  
+├─img
+│      gajidori.png
+│      
+├─semi-readme-template-master
+│  │  README.md
+│  │  
+│  └─readme-static
+│      │  README.md
+│      │  
+│      ├─img
+│      │      EggplantMarket.PNG
+│      │      
+│      └─svg
+│              java.svg
+│              javascript.svg
+│              node.svg
+│              react.svg
+│              
+├─semi_thirties_QnA
+│  │  .classpath
+│  │  .gitignore
+│  │  .project
+│  │  
+│  ├─.settings
+│  │      .jsdtscope
+│  │      org.eclipse.core.resources.prefs
+│  │      org.eclipse.jdt.core.prefs
+│  │      org.eclipse.wst.common.component
+│  │      org.eclipse.wst.common.project.facet.core.xml
+│  │      org.eclipse.wst.jsdt.ui.superType.container
+│  │      org.eclipse.wst.jsdt.ui.superType.name
+│  │      
+│  ├─build
+│  │  └─classes
+│  │      └─semi
+│  │          └─qna
+│  │                  Paging.class
+│  │                  QnADAO.class
+│  │                  QnADeleteServlet.class
+│  │                  QnAListServlet.class
+│  │                  QnAPostServlet.class
+│  │                  QnAUpdateServlet.class
+│  │                  QnAVO.class
+│  │                  
+│  └─src
+│      └─main
+│          ├─java
+│          │  └─semi
+│          │      └─qna
+│          │              Paging.java
+│          │              QnADAO.java
+│          │              QnADeleteServlet.java
+│          │              QnAListServlet.java
+│          │              QnAPostServlet.java
+│          │              QnAUpdateServlet.java
+│          │              QnAVO.java
+│          │              
+│          └─webapp
+│              │  QnADelete.jsp
+│              │  QnADetail.jsp
+│              │  QnAList.jsp
+│              │  QnAPost.jsp
+│              │  QnAUpdate.jsp
+│              │  
+│              ├─css
+│              │      .css
+│              │      QnAListStyles.css
+│              │      QnAStyles.css
+│              │      
+│              ├─img
+│              │      gajidori.png
+│              │      gazi.png
+│              │      
+│              ├─META-INF
+│              │      MANIFEST.MF
+│              │      
+│              └─WEB-INF
+│                  └─lib
+│                          ojdbc11.jar
+│                          
+└─Servers
+    │  .project
+    │  
+    ├─.settings
+    │      org.eclipse.wst.server.core.prefs
+    │      
+    └─Tomcat v9.0 Server at localhost-config
+            catalina.policy
+            catalina.properties
+            context.xml
+            server.xml
+            tomcat-users.xml
+            web.xml
+            

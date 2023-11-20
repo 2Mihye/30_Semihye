@@ -107,7 +107,7 @@
 									
 									for(QnAVO qna : qnas){
 						%>
-						<tr style="  border-bottom: 1px solid rgba(0,0,0,.1);">
+						<tr style="border-bottom: 1px solid rgba(0,0,0,.1);">
 							<td style="text-align:center;padding:8px;"> <%= qna.getQnaNo() %> </td>
 							<td style="padding:8px;"><a id="listlink" href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getQnaTitle() %> </td>
 							<td style="text-align:center;padding:8px;"><a id="listlink" href="QnADetail.jsp?qnaNo=<%=qna.getQnaNo()%>"> <%= qna.getAccountID() %> </td>
