@@ -143,7 +143,7 @@ public class QnADAO {
 		try {
 			Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
 			
-			String sql = "DELETE FROM board_qna WHERE qna_no = ?";
+			String sql = "DELETE FROM board_qna WHERE qna_no = ? AND ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, qnaNo);
 			

@@ -36,7 +36,7 @@ public class QnADeleteServlet extends HttpServlet {
 			QnADAO dao = new QnADAO();
 			int result =  dao.delete(qna_no);
 			
-			String deleteSql = "DELETE FROM board_qna WHERE qna_no = ?";
+			String deleteSql = "DELETE FROM board_qna WHERE qna_no = ? AND ";
 			ps = connection.prepareStatement(deleteSql);
 			ps.setInt(1, qna_no);
 			

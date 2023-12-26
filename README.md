@@ -1,14 +1,12 @@
 ### README
+
 # 가지마켓
 
 <p align="center">
   <br>
-  이미지는 추후에 변경하시거나 삭제하시면 됩니다.<br /> 보통 메인 이미지를 올려놓습니다.<br />
   <img src="./img/EggplantMarket.PNG">
   <br>
 </p>
-
-
 
 ## 프로젝트 소개
 
@@ -28,30 +26,35 @@
 
 ## 기술 스택
 
-| JavaScript |    Java    |
-| :--------: | :--------: |
-|   ![js]    |  ![java]   |
+| JavaScript |  Java   |
+| :--------: | :-----: |
+|   ![js]    | ![java] |
 
 <br>
 
 ## 구현 기능
 
 ### 기능 1
+
 <img src="./img/ListServlet.PNG"><br>
 <img src="./img/QnAListInfo.PNG"><br>
 
 ### 기능 2
+
 <img src="./img/PostServlet.PNG"><br>
 
 ### 기능 3
+
 <img src="./img/SelectOneDAO.PNG"><br>
 <img src="./img/QnAHit.PNG"><br>
 
 ### 기능 4
+
 <img src="./img/UpdateServlet.PNG"><br>
 <img src="./img/updateDAO.PNG"><br>
 
 ### 기능 5
+
 <img src="./img/DeleteServlet.PNG"><br>
 <img src="./img/DeleteDAO.PNG"><br>
 
@@ -68,10 +71,10 @@
 
 MVC: DTO DAO
 트러블슈팅(trouble shooting) : 문제 해결의 일종 / 보통 컴퓨터 시스템에서 발생하는 문제들을 해결하는 용어로 많이 사용합니다.
+
 </p>
 
 <br>
-
 
 <!-- Stack Icon Refernces -->
 
